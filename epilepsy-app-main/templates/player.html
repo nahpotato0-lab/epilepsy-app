@@ -155,10 +155,20 @@
             width: fit-content;
             background-color: black;
         }
+
+        #main_heading{
+            background-color: #1e1e1e;
+            width: 100%;    
+            top: 0px;
+            left: 0px;
+            right: 0px;
+        }
+
     </style>
 </head>
 <body id="b">
-        <h1 id="heading">Epilepscreen<span id="butholder"><button id="light" onclick="change_colour()" class="glyphicon glyphicon-adjust">Light Mode</button></span></h1>
+    <div id = main-heading><h1 id="heading">Epilepscreen<span id="butholder"><button id="light" onclick="change_colour()" class="glyphicon glyphicon-adjust">Light Mode</button></span></h1></div>
+      <hr style="width: 100%;">  
     <div class="container" id = "second-entire">
         <h1>SafeView Player</h1>
 
@@ -332,16 +342,16 @@
         function change_colour(){
             if (dark_mode){
                 document.getElementById("b").style.backgroundColor = 'white';
-                document.getElementById("heading").style.color = 'black';
+                document.getElementById("main-heading").style.backgroundColor = '#dadada';
                 document.getElementById("second-entire").style.backgroundColor = 'white';
                 document.getElementById("second-entire").style.color = 'black';
                 document.getElementById("light").innerHTML='Dark Mode';
                 dark_mode = false;
                 console.log(dark_mode)
             } else if(dark_mode==false){
-                document.getElementById("b").style.backgroundColor = 'black';
+                document.getElementById("b").style.backgroundColor = '#2c2c2c';
                 document.getElementById("heading").style.color = 'white';
-                document.getElementById("second-entire").style.backgroundColor = 'black';
+                document.getElementById("second-entire").style.backgroundColor = '#2c2c2c';
                 document.getElementById("second-entire").style.color = 'white';
                 document.getElementById("light").innerHTML='Light Mode';
                 dark_mode = true;
