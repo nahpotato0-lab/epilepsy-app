@@ -158,7 +158,6 @@
     </style>
 </head>
 <body id="b">
-    <div id="entire">
         <h1 id="heading">Epilepscreen<span id="butholder"><button id="light" onclick="change_colour()" class="glyphicon glyphicon-adjust">Light Mode</button></span></h1>
     <div class="container" id = "second-entire">
         <h1>SafeView Player</h1>
@@ -194,7 +193,7 @@
             {% endfor %}
         </ul>
     </div>
-</div>
+
     <!-- Hidden canvas for image analysis -->
     <canvas id="analysisCanvas"></canvas>
 
@@ -336,16 +335,15 @@
                 document.getElementById("heading").style.color = 'black';
                 document.getElementById("second-entire").style.backgroundColor = 'white';
                 document.getElementById("second-entire").style.color = 'black';
-                document.getElementsByClassName("inp").style.backgroundColor = 'white';
-                document.getElementById("light").value="Dark Mode";
+                document.getElementById("light").innerHTML='Dark Mode';
                 dark_mode = false;
-            } else{
+                console.log(dark_mode)
+            } else if(dark_mode==false){
                 document.getElementById("b").style.backgroundColor = 'black';
                 document.getElementById("heading").style.color = 'white';
                 document.getElementById("second-entire").style.backgroundColor = 'black';
                 document.getElementById("second-entire").style.color = 'white';
-                document.getElementsByClassName("inp").style.backgroundColor = 'black';
-                document.getElementById("light").value="Dark Mode";
+                document.getElementById("light").innerHTML='Light Mode';
                 dark_mode = true;
             }
             
