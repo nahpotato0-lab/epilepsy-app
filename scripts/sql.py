@@ -8,11 +8,11 @@ mydb = mysql.connector.connect(
   database="darsh"
 )
 cursor = mydb.cursor(buffered=True)
-query = "TRUNCATE TABLE epilepsy;"
-video_hash = 372040820107144080
+query = "TRUNCATE TABLE epilepsy"
+video_hash = 580580433826171209
 cursor.execute(query)
-row = cursor.fetchall()
-print(row)
+# row = cursor.fetchall()
+# print(row)
 cursor.close()
 mydb.close()
 # print(row)
