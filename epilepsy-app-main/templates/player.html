@@ -162,7 +162,7 @@
         }
 
         #clear-database{
-            width: 15%;
+            width: 10%;
             height: 15%;
         }
 
@@ -199,7 +199,7 @@
             <li class="video-item" onclick="playVideo('{{ video.file_path }}')">
                 <span>{{ video.title }}</span>
                 <small>{{ video.uploaded_at }}</small>
-                <button id="clear-database" class="glyphicon glyphicon-trash btn btn-danger"></button>
+                <button id="clear-database" name="delete">Delete Video</button>
             </li>
             {% empty %}
             <li class="video-item">No videos found. Upload one!</li>
