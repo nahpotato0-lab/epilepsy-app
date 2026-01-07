@@ -201,7 +201,7 @@
             <li class="video-item" onclick="playVideo('{{ video.file_path }}')">
                 <span>{{ video.title }}</span>
                 <small>{{ video.uploaded_at }}</small>
-                <form action="/delete/'{{ video.file_path }}'" method="POST">
+                <form action="/delete/'{{ video.hash }}'" method="POST">
                     <button id="delete-video" type="submit">Delete Video</button>
                 </form>
                 
