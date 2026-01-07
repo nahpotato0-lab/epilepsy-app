@@ -141,25 +141,31 @@
         #analysisCanvas { display: none; }
 
         #heading{
-            width: 100%;
-            text-align: center;
+            width: 20%;
+            text-align: left;
+            align-self: left;
         }
         
-        #butholder{
-            width: fit-content;
-            padding-left: 20%;
-        }
-
         #light{
             align-self: right;
             width: fit-content;
             background-color: black;
         }
+
+        #main_heading{
+            background-color: #1e1e1e;
+            width: 100% !important;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            display: inline-block;
+        }
+
     </style>
 </head>
 <body id="b">
-    <div id="entire">
-        <h1 id="heading">Epilepscreen<span id="butholder"><button id="light" onclick="change_colour()" class="glyphicon glyphicon-adjust">Light Mode</button></span></h1>
+    <div id = main-heading><h1 id="heading">Epilepscreen</h1><button id="light" onclick="change_colour()" class="glyphicon glyphicon-adjust">Light Mode</button></div>
+      <hr style="width: 100%;">  
     <div class="container" id = "second-entire">
         <h1>SafeView Player</h1>
 
@@ -194,7 +200,7 @@
             {% endfor %}
         </ul>
     </div>
-</div>
+
     <!-- Hidden canvas for image analysis -->
     <canvas id="analysisCanvas"></canvas>
 
@@ -333,11 +339,20 @@
         function change_colour(){
             if (dark_mode){
                 document.getElementById("b").style.backgroundColor = 'white';
-                document.getElementById("heading").style.color = 'black';
+                document.getElementById("main-heading").style.backgroundColor = '#dadada';
                 document.getElementById("second-entire").style.backgroundColor = 'white';
                 document.getElementById("second-entire").style.color = 'black';
-                document.getElementsByClassName("inp").style.backgroundColor = 'white';
-                document.getElementById("light").value="Dark Mode";
+                document.getElementById("light").innerHTML='Dark Mode';
+                dark_mode = false;
+                console.log(dark_mode)
+            } else if(dark_mode==false){
+                document.getElementById("b").style.backgroundColor = 'black';
+                document.getElementById("heading").style.color = 'white';
+                document.getElementById("second-entire").style.backgroundColor = '#2c2c2c';
+                document.getElementById("second-entire").style.color = 'white';
+                document.getElementById("light").innerHTML='Light Mode';
+                document.getElementById("main-heading").style.backgroundColor = 'black';
+                dark_mode = true;
             }
             
         }
