@@ -161,9 +161,11 @@
             display: inline-block;
         }
 
-        #clear-database{
-            width: 10%;
-            height: 15%;
+        #delete-vidoe{
+            width: fit-content;
+            height: 20%;
+            background-color: indianred;
+            color: whitesmoke;
         }
 
     </style>
@@ -199,8 +201,8 @@
             <li class="video-item" onclick="playVideo('{{ video.file_path }}')">
                 <span>{{ video.title }}</span>
                 <small>{{ video.uploaded_at }}</small>
-                <form action="/delete/" method="POST">
-                    <button id="clear-database" type="submit">Delete Video</button>
+                <form action="/delete/'{{ video.file_path }}'" method="POST">
+                    <button id="delete-video" type="submit">Delete Video</button>
                 </form>
                 
             </li>
