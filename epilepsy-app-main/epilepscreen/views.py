@@ -141,6 +141,31 @@ def upload_video(request):
     
     return redirect('index')
 
+def truncate(request, video_hash):
+    if request.method == 'POST':
+
+        # 3. Insert into MySQL
+        try:
+            cnx = get_db_connection()
+            cursor = cnx.cursor(buffered=True)
+
+            
+            query = """
+                DELETE FROM epilepsy WHERE hash=%s
+            """.encode('utf-8')
+            vals = (video_hash)
+            
+            cursor.execute(query, vals)
+            cnx.commit()
+            time.sleep(1)
+            cursor.close()
+            cnx.close()
+        except mysql.connector.Error as err:
+            return HttpResponse(f"Database Insert Error: {err}", status=500)
+
+        return redirect('index')
+    
+    return redirect('index')
 # ---------------------------------------------------------
 # DATABASE SETUP INSTRUCTIONS
 # ---------------------------------------------------------
