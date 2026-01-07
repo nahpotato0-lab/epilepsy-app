@@ -214,9 +214,9 @@
         // Configuration for sensitivity
         const CONFIG = {
             sampleRate: 20, // Check every 100ms (10fps analysis)
-            flashThreshold: 40, // Difference in brightness to consider a "flash" (0-255)
-            maxFlashCount: 3, // How many flashes in a row trigger dimming
-            dimLevel: 'brightness(40%) sepia(20%)', // CSS filter when protecting
+            flashThreshold: 20, // Difference in brightness to consider a "flash" (0-255)
+            maxFlashCount: 2, // How many flashes in a row trigger dimming
+            dimLevel: 'brightness(30%) sepia(20%) contrast(50%)', // CSS filter when protecting
             normalLevel: 'brightness(100%)',
             recoverySpeed: 2000 // Time ms to recover after flashing stops
         };
