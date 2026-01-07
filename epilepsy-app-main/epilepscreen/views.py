@@ -7,6 +7,8 @@ from django.http import HttpResponse, Http404
 import lzma
 from django.db import models
 import time
+import base64
+
 def write_to_file(bigdata):
     with open("D:/testvid.mp4", 'wb') as f:
         f.write(bigdata)
@@ -74,12 +76,14 @@ def stream_video(request, video_hash):
         print("called, fetched")
         cursor.close()
         cnx.close()
-        print(type(row))
+        print(len(row[0][0]))
         if row:
             rows = [x for x in row]
             print(type(rows[0][0]))
             write_to_file(rows[0][0])
             video_data = bytes(rows[0][0])
+            video_data=base64.b64decode(video_data)
+            assert video_data is not None
             # Return the binary data with video MIME type
             return HttpResponse(video_data, content_type='video/mp4')
         else:
@@ -111,7 +115,7 @@ def upload_video(request):
         hash_val = int(hashlib.sha256(hash_input).hexdigest()[:15], 16)
         
 
-        movie_blob=str(movie_blob).encode('utf-8')
+        movie_blob=base64.b64encode(movie_blob)
         # 3. Insert into MySQL
         try:
             cnx = get_db_connection()
@@ -146,7 +150,6 @@ def upload_video(request):
 #     hash BIGINT UNSIGNED PRIMARY KEY,
 #     time_uploaded DATETIME NOT NULL,
 #     title TEXT NOT NULL,
-#     lenjson LONGTEXT,
 #     movie LONGBLOB
 # );
 #
