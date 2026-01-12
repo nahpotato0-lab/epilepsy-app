@@ -161,6 +161,7 @@
             display: inline-block;
         }
 
+<<<<<<< HEAD
         #clear-database{
             width: 100%;
             height: 100%;
@@ -168,6 +169,13 @@
 
         #deleter{
             width: 20%;
+=======
+        #delete-vidoe{
+            width: fit-content;
+            height: 20%;
+            background-color: indianred !important;
+            color: whitesmoke !important;
+>>>>>>> 3f7ffa90daeb0e715feb2c2e5685d10b762d65fa
         }
 
     </style>
@@ -203,8 +211,13 @@
             <li class="video-item" onclick="playVideo('{{ video.file_path }}')">
                 <span>{{ video.title }}</span>
                 <small>{{ video.uploaded_at }}</small>
+<<<<<<< HEAD
                 <form action='{{ video.delpath }}' method="POST" id="deleter">
                     <button id="clear-database" type="submit">Delete Video</button>
+=======
+                <form action="/delete/'{{ video.hash }}'" method="POST">
+                    <button id="delete-video" type="submit">Delete Video</button>
+>>>>>>> 3f7ffa90daeb0e715feb2c2e5685d10b762d65fa
                 </form>
                 
             </li>
@@ -358,6 +371,7 @@
                 document.getElementById("light").innerHTML='Dark Mode';
                 dark_mode = false;
                 console.log(dark_mode)
+                document.getElementById("heading").style.color = 'black';
             } else if(dark_mode==false){
                 document.getElementById("b").style.backgroundColor = 'black';
                 document.getElementById("heading").style.color = 'white';
