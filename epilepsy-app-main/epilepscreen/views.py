@@ -10,9 +10,7 @@ import time
 import base64
 
 def write_to_file(bigdata):
-    with open("D:/testvid.mp4", 'wb') as f:
-        f.write(bigdata)
-        print("data written")
+    pass
 
 # Configuration for MySQL connection
 DB_CONFIG = {
@@ -49,7 +47,8 @@ def index(request):
                 'title': row['title'],
                 'uploaded_at': row['time_uploaded'],
                 # We generate a virtual URL that points to our stream_video view
-                'file_path': f"/stream/{int(row['hash'])}"
+                'file_path': f"/stream/{int(row['hash'])}", 
+                'delpath':f"/delete/{int(row['hash'])}"
             })
             
         cursor.close()
@@ -63,23 +62,19 @@ def stream_video(request, video_hash):
     """
     Retrieves the binary BLOB from MySQL and streams it to the client.
     """
-    print("stream called with hash- ", video_hash)   
+
     try:
         cnx = get_db_connection()
         cursor = cnx.cursor(buffered=True)
         
         # Fetch the actual video binary
         query = "SELECT movie FROM epilepsy WHERE hash = %s"
-        print("Ive been called")
         cursor.execute(query, (video_hash,))
         row = cursor.fetchall()
-        print("called, fetched")
         cursor.close()
         cnx.close()
-        print(len(row[0][0]))
         if row:
             rows = [x for x in row]
-            print(type(rows[0][0]))
             write_to_file(rows[0][0])
             video_data = bytes(rows[0][0])
             video_data=base64.b64decode(video_data)
@@ -142,18 +137,15 @@ def upload_video(request):
     return redirect('index')
 
 def truncate(request, video_hash):
-    if request.method == 'POST':
 
         # 3. Insert into MySQL
         try:
             cnx = get_db_connection()
-            cursor = cnx.cursor(buffered=True)
+            cursor = cnx.cursor()
 
             
-            query = """
-                DELETE FROM epilepsy WHERE hash=%s
-            """.encode('utf-8')
-            vals = (video_hash)
+            query = "DELETE FROM epilepsy WHERE hash=%s"
+            vals = (video_hash, )
             
             cursor.execute(query, vals)
             cnx.commit()
@@ -165,7 +157,7 @@ def truncate(request, video_hash):
 
         return redirect('index')
     
-    return redirect('index')
+    # return redirect('index')
 # ---------------------------------------------------------
 # DATABASE SETUP INSTRUCTIONS
 # ---------------------------------------------------------
