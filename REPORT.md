@@ -956,4 +956,6 @@ epilepsy-app/epilepscreen/templates
 ### Cryptography and Hashing
 - Python Software Foundation. (2024). *hashlib - Secure hashes and message digests*. https://docs.python.org/3.13/library/hashlib.html
 
+
 ---
+###By Ayan Tripathi, Aryan Khairnar and Darsh Gupta
